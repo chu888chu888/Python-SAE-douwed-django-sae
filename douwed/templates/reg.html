@@ -1,0 +1,22 @@
+﻿<html>
+<head>
+    <title>注册</title>
+    <style>pre{white-space:pre-wrap;word-wrap:break-word;}</style>
+</head>
+<body>
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <form action="" method="post">{% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
