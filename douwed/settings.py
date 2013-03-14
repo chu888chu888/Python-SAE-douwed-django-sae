@@ -144,7 +144,7 @@ ROOT_URLCONF = 'douwed.urls'
 WSGI_APPLICATION = 'douwed.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), 'templates').replace('\\', '/'),
+    os.path.join(APP_ROOT, 'templates').replace('\\', '/'),
 )
 
 INSTALLED_APPS = (

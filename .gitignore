@@ -6,3 +6,4 @@ virtualenv.bundle*
 bundle_local.py
 virtualenv.bundle.zip
 *.db
+/douwed/settings.py
