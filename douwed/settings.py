@@ -3,25 +3,38 @@
 import os.path
 
 
-DEBUG = False
-TEMPLATE_DEBUG = DEBUG
-
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
 MANAGERS = ADMINS
-import sae.const
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': sae.const.MYSQL_DB,
-        'USER': sae.const.MYSQL_USER,
-        'PASSWORD': sae.const.MYSQL_PASS,
-        'HOST': sae.const.MYSQL_HOST,
-        'PORT': sae.const.MYSQL_PORT,
+import os
+if 'SERVER_SOFTWARE' in os.environ:
+    import sae.const
+    DEBUG = False
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': sae.const.MYSQL_DB,
+            'USER': sae.const.MYSQL_USER,
+            'PASSWORD': sae.const.MYSQL_PASS,
+            'HOST': sae.const.MYSQL_HOST,
+            'PORT': sae.const.MYSQL_PORT,
+        }
     }
-}
+else:
+    DEBUG = True
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": "dev.db",
+            "USER": "",
+            "PASSWORD": "",
+            "HOST": "",
+            "PORT": "",
+        }
+    }
+TEMPLATE_DEBUG = DEBUG
 AUTH_PROFILE_MODULE = 'info.UserDetail'
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.contrib.douban.DoubanBackend2',
@@ -83,7 +96,8 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static').replace('\\', '/')
+APP_ROOT = os.path.join(os.path.dirname(__file__), "..").replace('\\', '/')
+STATIC_ROOT = os.path.join(APP_ROOT, 'static').replace('\\', '/')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
