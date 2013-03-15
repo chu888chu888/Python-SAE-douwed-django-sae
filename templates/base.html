@@ -1,26 +1,53 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <meta charset="utf-8">
-    <meta content="width=device-width,initial-scale=1" name="viewport">
-    <title>
-        {{ title }}
-    </title>
-    <link rel="stylesheet" href="/static/css/typo.css">
-    <link rel="stylesheet" href="/static/css/style.css">
-    <script src="/static/js/jquery-1.9.1.min.js" type="text/javascript">
-    </script>
-    <style>
-        body{background: url(http://ww1.sinaimg.cn/large/70437d4ejw1e27wvwjgy3j.jpg);}
-    </style>
-    <header>
-        <nav class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <a href="/" class="brand"><img src="/static/img/{{ value|random }}.png" alt="豆伴"></a>
-                <img src="/static/img/douban.png" alt="">
-            </div>
-        </nav>
-    </header>
-    {% block content %}{% endblock %}
-    <footer>
-    </footer>
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <title>
+            {{ title }}
+        </title>
+        <meta content="width=device-width,initial-scale=1" name="viewport">
+        <link rel="stylesheet" href="/static/css/typo.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <script src="/static/js/jquery-1.9.1.min.js" type="text/javascript">
+                                        
+        </script>
+        <style>
+            .navbar-right { text-align:center;width: 13%;max-width: 100px; height:
+            100%;position: fixed;padding:20px;float:left;background:rgb(245,245,245);border:
+            1px solid #d5d5d5; } body {background:rgb(234, 234, 234);} .context{position:
+            absolute;right: 0;min-height: 100%;width: 77%;} article{background-color:
+            #fffeff; margin-bottom: 20px; border: 1px solid #d5d5d5;margin:10px;padding:10px;}
+            p {text-indent: 7px;} .container { min-height: 100%; position: relative;
+            margin: 0; padding: 0; }
+        </style>
+    </head>
+    
+    <body>
+        <div class="container">
+            <nav class="navbar-right">
+                <div class="icon">
+                    <a href="/" class="brand"><img src="/static/img/{{ value|random }}.png" alt=""></a>
+                </div>
+                <div class="title">
+                    <a href="/"><img src="/static/img/douban.png" alt="豆伴"></a>
+                </div>
+                <div class="menu">
+                    <div class="home">
+                        <a class="home" href="/">首页</a>
+                    </div>
+                    <div class="home">
+                        <a class="random" href="/random">随机</a>
+                    </div>
+                    <div class="home">
+                        <a class="about" href="/about">关于</a>
+                    </div>
+                </div>
+            </nav>
+            {% block content %}{% endblock %}
+            <footer>
+            </footer>
+        </div>
+    </body>
 
 </html>
