@@ -1,39 +1,33 @@
-﻿{% extends "base.html" %}
-{% block content %}
-
-
-
-
-
+﻿﻿{% extends "base.html" %} {% block content %}
 <div class="container-fluid">
-<div class='row-fluid'>
-    <div class='span8'>
-        <div class="row-fluid">
-            {% for user in userdetail %}
-            {% if user.user_name %}
-            <div class="span6">
-                <div class="span12 ">
-                    {{user.want_say|escape|linebreaks}}
-                    <p><small><b><a href="http://www.douban.com/people/{{user.uid}}/">{{user.user_name}}</a></b><img src="http://img3.douban.com/icon/u{{user.uid}}.jpg" alt=""></small></p>
+    <div class='row-fluid'>
+        <div class='span8'>
+            <div class="row-fluid">
+                {% for user in userdetail %} {% if user.user_name %}
+                <div class="span6">
+                    <div class="span12">
+                        {{user.want_say|escape|linebreaks}}
+                        <p>
+                            <small>
+                                <b>
+                                    <a href="http://www.douban.com/people/{{user.uid}}/">{{user.user_name}}</a>
+                                </b>
+                                <img src="http://img3.douban.com/icon/u{{user.uid}}.jpg" alt="">
+                            </small>
+                        </p>
+                    </div>
                 </div>
+                {% endif %} {% endfor %}
             </div>
+        </div>
+        <div class="login">
+            {% if user.is_authenticated %} {% else %}
+            <p>
+                登录:
+                <a href="%20{%20url%20socialauth_begin%20'douban2'%20%}"><img src="http://img3.douban.com/pics/douban-icons/favicon_24x24.png" alt=""></a>
+            </p>
             {% endif %}
-            {% endfor %}
         </div>
     </div>
-    <div class="login">{% if user.is_authenticated %}
-  <p></p>
-{% else %}
-  <p></p>
-  <p>登录:<a href=" {% url socialauth_begin 'douban2' %}"><img src="http://img3.douban.com/pics/douban-icons/favicon_24x24.png" alt=""></a></p>
-{% endif %}</div>
 </div>
-</div>
-
-
-
-
-
-
-
 {% endblock %}
