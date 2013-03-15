@@ -1,32 +1,32 @@
-﻿﻿
-<html>
-    
-    <head>
-        <title>
+﻿﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <title>
             注册
-        </title>
-        <style>
+    </title>
+    <style>
             pre{white-space:pre-wrap;word-wrap:break-word;}
-        </style>
-    </head>
+    </style>
+</head>
     
-    <body>
+<body>
         {% if errors %}
-        <ul>
+    <ul>
             {% for error in errors %}
-            <li>
+        <li>
                 {{ error }}
-            </li>
+        </li>
             {% endfor %}
-        </ul>
+    </ul>
         {% endif %}
-        <form action="" method="post">
+    <form action="" method="post">
             {% csrf_token %}
-            <table>
+        <table>
                 {{ form.as_table }}
-            </table>
-            <input type="submit" value="Submit">
-        </form>
-    </body>
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+</body>
 
 </html>
