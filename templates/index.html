@@ -1,28 +1,36 @@
-﻿{% extends "base.html" %} {% block content %}
-<div class="context">
+﻿{% extends "base.html" %} {% block login %} {% if user.is_authenticated%}
+<ul class="nav pull-right">
+    <li>
+        <a href="/reg">注册</a>
+    </li>
+    <li>
+        <a href="/logout">登出</a>
+    </li>
+</ul>
+{% else %}
+<p class="navbar-text pull-right">
+    登入:
+    <a href=" {% url socialauth_begin 'douban2' %}"><img src="http://img3.douban.com/pics/douban-icons/favicon_24x24.png" alt=""></a>
+</p>
+{% endif %} {% endblock %} {% block content %}
+<div class="container-fluid">
+<div class="row-fluid">
+    <div class="span10 offset1">
+        <div class="span10 offset1">
     {% for user in userdetail %} {% if user.user_name %}
-    <article class="home-page">
+    <article>
         {{user.want_say|escape|linebreaks}}
-        <hr /><div class="author">
-        <a href="http://www.douban.com/people/{{user.uid}}/"><img src="http://img3.douban.com/icon/u{{user.uid}}.jpg" alt="{{user.user_name}}"></a>
-        <br />
-            <a href="http://www.douban.com/people/{{user.uid}}/">{{user.user_name}}</a></div>
+        <hr />
+        <div class="row-fluid">
+        <div id="author" class="span2 offset10 text-center">
+            <a href="http://www.douban.com/people/{{user.uid}}/"><img src="http://img3.douban.com/icon/u{{user.uid}}.jpg" alt="{{user.user_name}}"></a>
+            <br />
+            <a href="http://www.douban.com/people/{{user.uid}}/">{{user.user_name}}</a>
+        </div>
+    </div>
     </article>
     {% endif %} {% endfor %}
-    <div class="sidebar">
-        {% if user.is_authenticated %}
-        <div class="reg">
-            <a href="/reg">注册</a>
-        </div>
-        <div class="logout">
-            <a href="/logout">登出</a>
-        </div>
-        {% else %}
-        <div class="login">
-            登入:
-            <a href=" {% url socialauth_begin 'douban2' %}"><img src="http://img3.douban.com/pics/douban-icons/favicon_24x24.png" alt=""></a>
-        </div>
-        {% endif %}
-    </div>
+</div></div>
+</div>
 </div>
 {% endblock %}
