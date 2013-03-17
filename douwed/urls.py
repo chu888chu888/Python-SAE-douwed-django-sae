@@ -10,4 +10,5 @@ urlpatterns = patterns('',
                        url(r'^logout/$', logout),
                        url(r'^$', index),
                        url(r'^about/$', about),
+                       url(r'^get-user-info/$', get_user_info),
                        )

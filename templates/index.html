@@ -1,4 +1,4 @@
-﻿{% extends "base.html" %} {% block login %} {% if user.is_authenticated%}
+{% extends "base.html" %} {% block login %} {% if user.is_authenticated%}
 <ul class="nav pull-right">
     <li>
         <a href="/reg">注册</a>
@@ -14,23 +14,24 @@
 </p>
 {% endif %} {% endblock %} {% block content %}
 <div class="container-fluid">
-<div class="row-fluid">
-    <div class="span10 offset1">
+    <div class="row-fluid">
         <div class="span10 offset1">
-    {% for user in userdetail %} {% if user.user_name %}
-    <article>
-        {{user.want_say|escape|linebreaks}}
-        <hr />
-        <div class="row-fluid">
-        <div id="author" class="span2 offset10 text-center">
-            <a href="http://www.douban.com/people/{{user.uid}}/"><img src="http://img3.douban.com/icon/u{{user.uid}}.jpg" alt="{{user.user_name}}"></a>
-            <br />
-            <a href="http://www.douban.com/people/{{user.uid}}/">{{user.user_name}}</a>
+            <div class="span10 offset1">
+                {% for user in userdetail %} {% if user.user_name %}
+                <article id="user_say">
+                    {{user.want_say|escape|linebreaks}}
+                    <hr />
+                    <div class="row-fluid">
+                        <div id="author" class="span2 offset10 text-center">
+                            <a href="http://www.douban.com/people/{{user.uid}}/"><img src="http://img3.douban.com/icon/u{{user.uid}}.jpg" alt="{{user.user_name}}"></a>
+                            <br />
+                            <a href="http://www.douban.com/people/{{user.uid}}/">{{user.user_name}}</a>
+                        </div>
+                    </div>
+                </article>
+                {% endif %} {% endfor %}
+            </div>
         </div>
     </div>
-    </article>
-    {% endif %} {% endfor %}
-</div></div>
-</div>
 </div>
 {% endblock %}
