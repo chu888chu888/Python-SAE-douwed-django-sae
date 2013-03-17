@@ -26,9 +26,9 @@ def about(request):
 def reg(request):
     form = ContactForm()
     errors = []
+    id = request.user.id
+    userdetail = get_object_or_404(UserDetail, user_id=id)
     if request.method == 'POST':
-        id = request.user.id
-        userdetail = get_object_or_404(UserDetail, user_id=id)
         if not request.POST['position']:
             errors.append('请输入一个地址')
         if not request.POST['want_say']:
@@ -37,8 +37,9 @@ def reg(request):
             userdetail.position = request.POST['position']
             userdetail.want_say = request.POST['want_say']
             userdetail.save()
+    title = "在豆伴登记"
     return render_to_response("reg.html",
-                              RequestContext(request, {'form': form, 'errors': errors}))
+                              RequestContext(request, {'form': form, 'errors': errors, 'title': title, 'userdetail': userdetail}))
 
 
 def logout(request):
